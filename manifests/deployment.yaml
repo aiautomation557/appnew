@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appnewone
+  labels:
+    app: appnewone
+    kubernetes.azure.com/generator: devhub
+  namespace: namespaceone
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: appnewone
+  template:
+    metadata:
+      labels:
+        app: appnewone
+    spec:
+      containers:
+        - name: appnewone
+          image: registryone.azurecr.io/registryimage:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
